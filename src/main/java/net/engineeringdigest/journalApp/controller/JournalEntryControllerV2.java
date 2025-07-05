@@ -15,9 +15,9 @@ public class JournalEntryControllerV2 {
     @Autowired
     private JournalEntryService journalEntryService;
 
-    @GetMapping
+    @GetMapping("/")
     public List<JournalEntry> getAll() {
-        return null;
+        return journalEntryService.getAll();
     }
 
     @PostMapping
@@ -26,9 +26,9 @@ public class JournalEntryControllerV2 {
         return true;
     }
 
-//    @GetMapping("{myId}")
-//    public JournalEntry getJournalEntryById(@PathVariable Long myId) {
-//        return null;
-//    }
+    @GetMapping("/{myId}")
+    public JournalEntry getJournalEntryById(@PathVariable String myId) {
+        return journalEntryService.getJournalEntryById(myId);
+    }
 
 }
