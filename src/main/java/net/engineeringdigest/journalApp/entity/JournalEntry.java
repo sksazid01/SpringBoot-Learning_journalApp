@@ -1,37 +1,26 @@
 package net.engineeringdigest.journalApp.entity;
 
 
+import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import javax.xml.crypto.Data;
+import java.time.LocalDateTime;
 
 @Document(collection = "journal_entries")  // It mapped with row value of database
 public class JournalEntry {
 
     @Id  // Make id as a primary key
-    private String id;
+    private ObjectId id;
     private String title;
     private String content;
+    private LocalDateTime date;
 
-
-
-
-    public Data getDate() {
-        return date;
-    }
-
-    public void setDate(Data date) {
-        this.date = date;
-    }
-
-    private Data date;
-
-    public String getId() {
+    public ObjectId getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(ObjectId id) {
         this.id = id;
     }
 
@@ -49,5 +38,13 @@ public class JournalEntry {
 
     public void setContent(String content) {
         this.content = content;
+    }
+
+    public LocalDateTime getDate() {
+        return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 }

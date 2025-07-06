@@ -2,6 +2,7 @@ package net.engineeringdigest.journalApp.service;
 
 import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.repository.JournalEntryRepository;
+import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +12,6 @@ import java.util.List;
 @Component
 public class JournalEntryService {
     // all business logic here
-
-
 
     //  @Autowired   for auto object injection in journalEntryRepository variable
     @Autowired   // Get error if you miss this Annotation
@@ -24,7 +23,7 @@ public class JournalEntryService {
     public List<JournalEntry> getAll(){
         return journalEntryRepository.findAll();
     }
-    public JournalEntry getJournalEntryById(String myID){
-        return journalEntryRepository.findById(myID).get();
-    }
+//    public JournalEntry getJournalEntryById(ObjectId myID){
+//        return journalEntryRepository.findById(myID).get();
+//    }
 }
