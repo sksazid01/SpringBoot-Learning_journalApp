@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Component
@@ -23,7 +24,10 @@ public class JournalEntryService {
     public List<JournalEntry> getAll(){
         return journalEntryRepository.findAll();
     }
-//    public JournalEntry getJournalEntryById(ObjectId myID){
-//        return journalEntryRepository.findById(myID).get();
-//    }
+    public Optional <JournalEntry> findById(ObjectId myID){  // Optional<T> means, it can return an empty box or an object
+        return journalEntryRepository.findById(myID);
+    }
+    public void deleteById(ObjectId myId){
+         journalEntryRepository.deleteById(myId);
+    }
 }

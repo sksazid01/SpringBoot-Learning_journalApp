@@ -17,7 +17,8 @@ public class JournalEntryControllerV2 {
     @Autowired
     private JournalEntryService journalEntryService;
 
-    @GetMapping("")         // @GetMapping("/") ----url--->  localhost:8080/journal/        (localhost:8080/journal is wrong)
+    @GetMapping("")
+    // @GetMapping("/") ----url--->  localhost:8080/journal/        (localhost:8080/journal is wrong)
     public List<JournalEntry> getAll() {
         return journalEntryService.getAll();
     }
@@ -29,9 +30,31 @@ public class JournalEntryControllerV2 {
         return myEntry;
     }
 
-//    @GetMapping("/{myId}")
-//    public JournalEntry getJournalEntryById(@PathVariable ObjectId myId) {
-//        return journalEntryService.getJournalEntryById(myId);
-//    }
+    @GetMapping("/{myId}")
+    public JournalEntry getJournalEntryById(@PathVariable ObjectId myId) {
+        return journalEntryService.findById(myId).orElse(null);
+    }
+
+    @DeleteMapping("/{myId}")
+    public String deleteJournalEntryById(@PathVariable ObjectId myId) {
+        journalEntryService.deleteById(myId);
+        return "The ID = "+myId+ " is deleted successfully.";
+    }
+
+    @PutMapping("/{newId}")
+    public String UpdateJournalEntryById(@PathVariable ObjectId newId, @RequestBody JournalEntry newEntry) {  //   @PutMapping("/{newId}") name and the (@PathVariable ObjectId newId) should be same.
+        JournalEntry oldEntry = journalEntryService.findById(newId).orElse(null);
+        String msg;
+        if (oldEntry != null) {
+            oldEntry.setTitle(newEntry.getTitle() != null && !newEntry.getTitle().isEmpty() ? newEntry.getTitle() : oldEntry.getTitle());
+            oldEntry.setContent(newEntry.getContent() != null && !newEntry.getContent().isEmpty() ? newEntry.getContent() : oldEntry.getContent());
+
+            msg = "The update of ID = " + newId + " was successful.";
+        } else
+            msg = "Journal is not found.";
+
+        journalEntryService.saveEntry(oldEntry);
+        return msg;
+    }
 
 }
