@@ -17,7 +17,7 @@ public class JournalEntryControllerV2 {
     @Autowired
     private JournalEntryService journalEntryService;
 
-    @GetMapping("")
+    @GetMapping("")         // @GetMapping("/") ----url--->  localhost:8080/journal/        (localhost:8080/journal is wrong)
     public List<JournalEntry> getAll() {
         return journalEntryService.getAll();
     }
