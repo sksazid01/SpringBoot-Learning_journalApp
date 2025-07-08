@@ -33,7 +33,6 @@ public class JournalEntryControllerV2 {
     @PostMapping
     public ResponseEntity<JournalEntry> createEntry(@RequestBody JournalEntry myEntry) {
         try {
-            myEntry.setDate(LocalDateTime.now());
             journalEntryService.saveEntry(myEntry);  // Post Json Info --> Controller Receive --> Send to Service --> Write On Database
             return new ResponseEntity<JournalEntry>(myEntry, HttpStatus.CREATED);
         }catch (Exception e){
