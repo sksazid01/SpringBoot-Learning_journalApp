@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-@Document(collection = "journal_entries")  // It mapped with row value of database
+@Document(collection = "user")  // It mapped with row value of database
 @Data  // Project Lombok, That auto generate Getter, Setter, ToString etc. using @Data annotation.
 public class User {
     @Id  // Make id as a primary key
