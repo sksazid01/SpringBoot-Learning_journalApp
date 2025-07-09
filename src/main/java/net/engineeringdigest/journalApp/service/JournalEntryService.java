@@ -6,6 +6,7 @@ import net.engineeringdigest.journalApp.repository.JournalEntryRepository;
 import org.bson.types.ObjectId;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.List;
@@ -24,7 +25,7 @@ public class JournalEntryService {
     @Autowired
     private UserService userService;
 
-
+    @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName) {
         try {
             User user = userService.findByUserName(userName);
@@ -37,12 +38,20 @@ public class JournalEntryService {
 //            Shortcut
 //            user.getJournalEntries().add(journalEntry);
 
+
+            // break atomicity below
+//             user.setUserName(null);   to solve, we need to use  @Transactional to make whole function in one entity
+
+
             userService.saveEntry(user);
 
         } catch (Exception e) {
             log.println("Exception " + e);
+            System.out.println("e");
+            throw new RuntimeException("An error occurred while saving the entries",e);
         }
     }
+
     public void saveEntry(JournalEntry journalEntry) {
         try {
             journalEntryRepository.save(journalEntry);
@@ -61,7 +70,7 @@ public class JournalEntryService {
     }
 
     public void deleteById(ObjectId myId, String userName) {
-       // remove journal reference from user
+        // remove journal reference from user
         User user = userService.findByUserName(userName);
         user.getJournalEntries().removeIf(x -> x.getId().equals(myId));
         userService.saveEntry(user);
