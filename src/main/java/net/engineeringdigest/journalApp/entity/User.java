@@ -26,4 +26,6 @@ public class User {
 
     @DBRef // Patent-Child Relation created.
     private List<JournalEntry> journalEntries = new ArrayList<>();
+
+    private List<String> roles;  // roles: user, admin etc.
 }
