@@ -53,3 +53,32 @@
 | 502  | Bad Gateway            | Bad upstream response                       |
 | 503  | Service Unavailable    | Server down or busy                         |
 | 504  | Gateway Timeout        | Upstream server didn’t respond              |
+
+
+
+
+
+
+
+
+
+![image](https://github.com/user-attachments/assets/a8dd7fff-3f42-4057-b4fc-35e8e08553c2)
+
+# Authentication vs. Authorization in Web Context
+
+## Authentication: WHO you are
+- **Web Example**: Login page where users enter credentials
+- **UI Elements**: Username/password fields, "Sign In" buttons, "Forgot Password" links
+- **Response**: "Invalid username or password" errors
+- **Technical**: Login cookies, JWT tokens, session IDs
+
+## Authorization: WHAT you can do
+- **Web Example**: Access control to specific pages or features
+- **UI Elements**: Hidden menu items, disabled buttons, restricted sections
+- **Response**: "403 Forbidden" errors, "Access Denied" pages
+- **Technical**: Role checks, permission flags, route guards
+
+
+## Enable Authentication
+![image](https://github.com/user-attachments/assets/572a4555-fc97-4df2-bf1b-cfe325263e29)
+
