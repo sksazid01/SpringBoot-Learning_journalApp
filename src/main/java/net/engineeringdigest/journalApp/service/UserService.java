@@ -1,6 +1,5 @@
 package net.engineeringdigest.journalApp.service;
 
-import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
@@ -37,6 +36,9 @@ public class UserService {
     }
     public void deleteById(ObjectId myId){
         userRepository.deleteById(myId);
+    }
+    public void deleteByUserName(String userName){
+        userRepository.deleteByUserName(userName);
     }
     public User findByUserName(String userName){
         return userRepository.findByUserName(userName);
