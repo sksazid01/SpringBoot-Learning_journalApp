@@ -43,21 +43,12 @@ public class JournalEntryService {
 //             user.setUserName(null);   to solve, we need to use  @Transactional to make whole function in one entity
 
 
-            userService.saveEntry(user);
+            userService.saveUser(user);
 
         } catch (Exception e) {
             log.println("Exception " + e);
             System.out.println("e");
             throw new RuntimeException("An error occurred while saving the entries",e);
-        }
-    }
-
-    public void saveEntry(JournalEntry journalEntry) {
-        try {
-            journalEntryRepository.save(journalEntry);
-
-        } catch (Exception e) {
-            log.println("Exception " + e);
         }
     }
 
@@ -69,13 +60,22 @@ public class JournalEntryService {
         return journalEntryRepository.findById(myID);
     }
 
-    public void deleteById(ObjectId myId, String userName) {
-        // remove journal reference from user
-        User user = userService.findByUserName(userName);
-        user.getJournalEntries().removeIf(x -> x.getId().equals(myId));
-        userService.saveEntry(user);
+    @Transactional
+    public void  deleteById(ObjectId myId, String userName) {
+        try {
+            // remove journal reference from user
+            User user = userService.findByUserName(userName);
+            boolean removed = user.getJournalEntries().removeIf(x -> x.getId().equals(myId));
 
-        // remove journal reference
-        journalEntryRepository.deleteById(myId);
+            if (removed){
+                userService.saveUser(user);
+                // remove journal reference
+                journalEntryRepository.deleteById(myId);
+            }
+        }catch (Exception e){
+            System.out.println(e);
+            throw new RuntimeException("An error occurred while deleting the entry.");
+        }
     }
+
 }

@@ -37,7 +37,7 @@ public class UserController {
         if (oldUser != null) {
             oldUser.setUserName(user.getUserName());   // not need to check empty, because userName can't be null.
             oldUser.setPassword(user.getPassword());
-            userService.saveEntry(oldUser);
+            userService.saveNewUser(oldUser);
             return new ResponseEntity<>(HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
