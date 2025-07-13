@@ -82,3 +82,13 @@
 ## Enable Authentication
 ![image](https://github.com/user-attachments/assets/572a4555-fc97-4df2-bf1b-cfe325263e29)
 
+
+Create Multiple application.yml files for the developer and production team.
+<img width="336" height="249" alt="image" src="https://github.com/user-attachments/assets/3273f06a-035a-429d-a300-a35158fca95f" />
+```
+spring:
+  profiles:
+    active: dev # it runs application-dev.yml
+```
+
+
