@@ -98,8 +98,10 @@ spring:
 <img width="1681" height="523" alt="image" src="https://github.com/user-attachments/assets/81518553-fe2c-4446-ad5b-b6b519154054" />
 We used @slf4j for logging.
 
-## Debug and Trace should enable manually.
-![img.png](img.png)
+## Debug and Trace should be enabled manually.
+<img width="787" height="488" alt="img" src="https://github.com/user-attachments/assets/9d00663f-fe36-456d-a030-8ddad4206776" />
+
 
 ## Only errors will print.
-![img_1.png](img_1.png)
+<img width="615" height="874" alt="img_1" src="https://github.com/user-attachments/assets/915ac0df-04aa-4bbf-8d02-2e9d4d29c1af" />
+
