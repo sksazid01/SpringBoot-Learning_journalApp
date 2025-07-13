@@ -1,21 +1,21 @@
 package net.engineeringdigest.journalApp.service;
 
+import lombok.extern.slf4j.Slf4j;
 import net.engineeringdigest.journalApp.entity.JournalEntry;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.JournalEntryRepository;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
-
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
 
-import static jdk.nashorn.internal.runtime.regexp.joni.Config.log;
-
-
 @Component
+@Slf4j
 public class JournalEntryService {
     // all business logic here
 
@@ -24,6 +24,8 @@ public class JournalEntryService {
     private JournalEntryRepository journalEntryRepository;   // no need to implement, the Spring auto implement the method //
     @Autowired
     private UserService userService;
+
+//    private static final Logger logger = LoggerFactory.getLogger(JournalEntryService.class);
 
     @Transactional
     public void saveEntry(JournalEntry journalEntry, String userName) {
@@ -38,16 +40,11 @@ public class JournalEntryService {
 //            Shortcut
 //            user.getJournalEntries().add(journalEntry);
 
-
             // break atomicity below
 //             user.setUserName(null);   to solve, we need to use  @Transactional to make whole function in one entity
-
-
             userService.saveUser(user);
-
         } catch (Exception e) {
-            log.println("Exception " + e);
-            System.out.println("e");
+            log.error("Error",e);
             throw new RuntimeException("An error occurred while saving the entries",e);
         }
     }

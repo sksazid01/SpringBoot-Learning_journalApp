@@ -3,6 +3,8 @@ package net.engineeringdigest.journalApp.service;
 import net.engineeringdigest.journalApp.entity.User;
 import net.engineeringdigest.journalApp.repository.UserRepository;
 import org.bson.types.ObjectId;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -22,11 +24,21 @@ public class UserService {
     private UserRepository userRepository;   // no need to implement, the Spring auto implement the method //
     private static final PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 
     public void saveNewUser(User user){
-           user.setPassword(passwordEncoder.encode(user.getPassword()));
-           user.setRoles(Arrays.asList("USER"));
-           userRepository.save(user);
+        try{
+            user.setPassword(passwordEncoder.encode(user.getPassword()));
+            user.setRoles(Arrays.asList("USER"));
+            userRepository.save(user);
+        }catch (Exception e){
+            logger.error("Error occurred for {}: ",user.getUserName(),e);  // output: Error occurred for sazid: e
+//            logger.warn("Error: ",e);
+//            logger.info("Error: ",e);
+//            logger.debug("Error: ",e);
+//            logger.trace("Error: ",e);
+        }
+
     }
 
     public void saveAdminUser(User user){
