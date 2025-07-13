@@ -82,3 +82,21 @@
 ## Enable Authentication
 ![image](https://github.com/user-attachments/assets/572a4555-fc97-4df2-bf1b-cfe325263e29)
 
+
+Create Multiple application.yml files for the developer and production team. <br>
+<img width="336" height="249" alt="image" src="https://github.com/user-attachments/assets/3273f06a-035a-429d-a300-a35158fca95f" />
+```
+spring:
+  profiles:
+    active: dev # it runs application-dev.yml
+```
+
+
+# Log:
+<img width="1834" height="488" alt="image" src="https://github.com/user-attachments/assets/b4a4e576-a7d2-435c-9cbb-0e435407838d" />
+<img width="1907" height="615" alt="image" src="https://github.com/user-attachments/assets/2311bce0-7501-4d55-ad04-cf48135312cd" />
+<img width="1681" height="523" alt="image" src="https://github.com/user-attachments/assets/81518553-fe2c-4446-ad5b-b6b519154054" />
+We used @slf4j for logging.
+
+
+
