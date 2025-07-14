@@ -32,6 +32,7 @@ public class UserController {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String userName = authentication.getName();
 
+
         return new ResponseEntity<>("Hi "+userName+", Weather feels like "+weatherService.getWeather("Mumbai").getCurrent().getFeelslike(),HttpStatus.OK);
     }
 
