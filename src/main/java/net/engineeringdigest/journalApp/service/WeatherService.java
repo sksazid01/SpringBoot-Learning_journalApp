@@ -8,9 +8,10 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
-@Component
+@Service
 public class WeatherService {
     private static final String apiKey = "3b8b33b7b42b49f15c8a3e6895595f8b";
     private static final String API = "https://api.weatherstack.com/current?access_key=API_KEY&query=CITY";
