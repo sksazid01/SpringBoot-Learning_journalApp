@@ -105,3 +105,4 @@ We used @slf4j for logging.
 ## Only errors will print.
 <img width="615" height="874" alt="img_1" src="https://github.com/user-attachments/assets/915ac0df-04aa-4bbf-8d02-2e9d4d29c1af" />
 
+# To check code quality , we need to install a plugin name: SonarQube for ide in intellij
