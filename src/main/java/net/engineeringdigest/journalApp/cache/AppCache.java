@@ -17,8 +17,9 @@ public class AppCache {
     @Autowired
     ConfigRepository configRepository;
 
-    @PostConstruct
+    @PostConstruct  // call this method during startup
     public void init(){
+        APP_CACHE = new HashMap<>();
         List<Config> all = configRepository.findAll();
         for(Config config:all){
             APP_CACHE.put(config.getKey(), config.getValue());
